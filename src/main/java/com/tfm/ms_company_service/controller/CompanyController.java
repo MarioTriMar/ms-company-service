@@ -3,6 +3,7 @@ package com.tfm.ms_company_service.controller;
 import com.tfm.ms_company_service.model.Company;
 import com.tfm.ms_company_service.service.CompanyService;
 import lombok.Getter;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -14,6 +15,7 @@ import java.util.regex.Pattern;
 
 @RequestMapping("/company")
 @RestController
+@Slf4j
 public class CompanyController {
     @Autowired
     private CompanyService companyService;
@@ -23,6 +25,7 @@ public class CompanyController {
 
     @PostMapping()
     public ResponseEntity createCompany(@RequestBody Company company) {
+        log.info("CreateCompany [{}]", company.toString());
         if(!isValid(company)){
             return new ResponseEntity<>("Invalid company", HttpStatus.BAD_REQUEST);
         }
@@ -31,6 +34,7 @@ public class CompanyController {
 
     @GetMapping("/{id}")
     public ResponseEntity getCompany(@PathVariable String id) {
+        log.info("Searching company by ID: {}", id);
         if(id==null || id.isEmpty()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -39,6 +43,7 @@ public class CompanyController {
 
     @PutMapping()
     public ResponseEntity updateCompany(@RequestBody Company company) {
+        log.info("Update company [{}]", company);
         if(company.getEmail()==null || company.getName()==null ||
             company.getAddress()==null || company.getSupportPhone()==null || company.getId()==null ||
             company.getCif() == null){
@@ -52,6 +57,7 @@ public class CompanyController {
 
     @DeleteMapping("/{id}")
     public ResponseEntity deleteCompany(@PathVariable String id) {
+        log.info("Delete company by ID: {}", id);
         if(id==null || id.isEmpty()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
