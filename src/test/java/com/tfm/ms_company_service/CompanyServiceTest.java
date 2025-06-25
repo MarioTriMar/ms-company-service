@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -66,10 +67,10 @@ public class CompanyServiceTest {
         when(companyRepository.findById("123"))
                 .thenReturn(Optional.of(company));
 
-        ResponseEntity<?> response = companyService.getCompany("123");
+        Company company1 = companyService.getCompany("123");
 
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals(company, response.getBody());
+
+        assertEquals(company, company1);
     }
 
     @Test
@@ -77,10 +78,9 @@ public class CompanyServiceTest {
         when(companyRepository.findById("not_found"))
                 .thenReturn(Optional.empty());
 
-        ResponseEntity<?> response = companyService.getCompany("not_found");
+        Company company = companyService.getCompany("not_found");
 
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals("Company not found", response.getBody());
+        assertNull(company);
     }
     @Test
     void shouldUpdateCompanySuccessfully() {
