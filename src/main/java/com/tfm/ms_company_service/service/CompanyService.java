@@ -27,12 +27,12 @@ public class CompanyService {
         return new ResponseEntity<>("Company created", HttpStatus.CREATED);
     }
 
-    public ResponseEntity getCompany(String id) {
+    public Company getCompany(String id) {
         Optional<Company> optCompany = companyRepository.findById(id);
         if(optCompany.isPresent()) {
-            return new ResponseEntity<>(optCompany.get(), HttpStatus.OK);
+            return optCompany.get();
         }else{
-            return new ResponseEntity<>("Company not found", HttpStatus.NOT_FOUND);
+            return null;
         }
     }
 

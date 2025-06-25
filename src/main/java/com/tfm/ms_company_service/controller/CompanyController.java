@@ -38,7 +38,11 @@ public class CompanyController {
         if(id==null || id.isEmpty()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return companyService.getCompany(id);
+        Company company = companyService.getCompany(id);
+        if (company==null){
+            return new ResponseEntity<>("Company not found", HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(company, HttpStatus.OK);
     }
 
     @PutMapping()
