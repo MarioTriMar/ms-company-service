@@ -14,6 +14,7 @@ import java.util.Map;
 @Component
 @Slf4j
 public class CacheEntries {
+    /*
     @Autowired
     private CacheManager cacheManager;
 
@@ -29,4 +30,6 @@ public class CacheEntries {
             throw new IllegalStateException("Cache is not a Caffeine cache");
         }
     }
+
+     */
 }
