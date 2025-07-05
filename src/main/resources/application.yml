@@ -9,10 +9,3 @@ spring:
       uri: "${MONGO_URI:mongodb+srv://mario:mario@cluster0.t4gtdev.mongodb.net/}"
       database: company
 
-eureka:
-  client:
-    service-url:
-      defaultZone: ${EUREKA_URL:http://localhost:8079/eureka}
-  instance:
-    preferIpAddress: true
-    hostname: ms-company-service

@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,6 +31,13 @@ public class CompanyController {
             return new ResponseEntity<>("Invalid company", HttpStatus.BAD_REQUEST);
         }
         return companyService.createCompany(company);
+    }
+
+    @GetMapping()
+    public ResponseEntity getCompanies(){
+        log.info("Getting all companies");
+        List<Company> companies = companyService.getAll();
+        return new ResponseEntity<>(companies, HttpStatus.OK);
     }
 
     @GetMapping("/{id}")
