@@ -1,6 +1,5 @@
 package com.tfm.ms_company_service.config;
 
-import com.github.benmanes.caffeine.cache.Cache;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
